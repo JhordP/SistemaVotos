@@ -6,6 +6,7 @@ public class Votos {
     protected String candidatos[];
     protected int acumVotos[];
 
+    //Constructor, recibe una cantidad variable de candidatos en el array debido al vararg.
     public Votos(String... candidatos) {
 
         this.candidatos = new String[candidatos.length];

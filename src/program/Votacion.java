@@ -1,7 +1,8 @@
 package program;
 import java.util.Scanner;
 
-public class Votacion extends Votos {
+public class Votacion extends Votos { //Clase hija de Votos.java
+    //Atributos de la clase
     private static int cantVotos;
     private static int cantVotosH;
     private static int cantVotosM;
@@ -9,11 +10,13 @@ public class Votacion extends Votos {
     private int mayorVotos = 0;
     Scanner input;
 
+    //Constructor
     public Votacion(String candidatos[]) {
         super(candidatos);
         input = new Scanner(System.in);
     }
 
+    //GET & SET
     public int getCantVotos() {
         return Votacion.cantVotos;
     }
@@ -24,7 +27,7 @@ public class Votacion extends Votos {
     public int getCantVotosH() {
         return Votacion.cantVotosH;
     }
-    public void setCantVotosGenero(int cantVotosH) {
+    public void setCantVotosH(int cantVotosH) {
         Votacion.cantVotosH = cantVotosH;
     }
 
@@ -35,6 +38,7 @@ public class Votacion extends Votos {
         Votacion.cantVotosM = cantVotosM;
     }
 
+    //Metodo principal de la clase
     public void votar() {
         System.out.println("\nCandidatos disponibles:");
         System.out.println(super.toString());
@@ -51,7 +55,9 @@ public class Votacion extends Votos {
             ++cantVotos;
         }
         
-        votosPorGenero();
+        votosPorGenero(); //Linea 74
+
+        //Bucle recursivo
         System.out.println("Seguir votando?");
         var selec = input.nextInt();
         if (selec == 1) {
@@ -60,7 +66,6 @@ public class Votacion extends Votos {
         
         //Forma automatizada de encontrar un numero mayor que otro sin importar la cantidad en el array.
         for(int i=0; i < this.acumVotos.length; i++){
-            // System.out.println(nombres[i] + " " + sueldos[i]);
             if(this.acumVotos[i]>mayorVotos){ // 
                 mayorVotos = acumVotos[i];
                 indexCand = i;
@@ -91,10 +96,11 @@ public class Votacion extends Votos {
         }
     }
 
+    //Data obtenida
     public void mostrarDatos() {
         StringBuilder sb = new StringBuilder();
         sb.append("Cantidad de votos totales: "+cantVotos)
-          .append("\nCantidad de votos por genero:\t"+"Cantidad hombres: "+cantVotosH+"\tCantidad mujeres: "+cantVotosM)
+          .append("\nCantidad de votos por genero:\t"+"Cantidad hombres: "+getCantVotosH()+"\tCantidad mujeres: "+getCantVotosM())
           .append("\nCandidato con mayor votos: "+this.candidatos[this.indexCand]+"Con "+ this.mayorVotos);
         System.out.println(sb.toString());
         System.out.println("Porcentajes:\n");
